@@ -7,6 +7,7 @@ score = ''
 doc = ''
 
 prev_word = ''
+prev_score = ''
 
 for line in sys.stdin:
     line = line.strip()
@@ -16,8 +17,9 @@ for line in sys.stdin:
     if prev_word != word:
         # ignore the first line
         if prev_word:
-            print("{0}, {1} = {2}".format(prev_word, doc, score))
-        prev_word = word
+            print("{0}, {1} = {2}".format(prev_word, doc, prev_score))
+    prev_word = word
+    prev_score = score
 
 
 if prev_word == word:

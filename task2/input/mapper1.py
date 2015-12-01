@@ -4,7 +4,7 @@ import sys
 import math
 
 search_doc = 'd1.txt'
-total_docs = 5
+total_docs = 17.0
 
 # First load the dictionary.
 terms = set()
@@ -34,9 +34,7 @@ def calculate_tf_idf(term, freq, docs_occur):
     :param docs_occur: the number of documents where the term appears
     :return: the term frequency-inverse document frequency
     """
-    docs_occur = int(docs_occur)
-    freq = int(docs_occur)
-    return freq * math.log(total_docs/(1.0 + docs_occur), 10)
+    return float(freq) * math.log(total_docs/(1.0 + float(docs_occur)), 10)
 
 for line in sys.stdin:
     line = line.strip()
@@ -51,7 +49,7 @@ for line in sys.stdin:
 
 # print all the missing terms
 for term in terms:
-    print("{0}\t{1}\t{2}".format(term, 0, search_doc))
+    print("{0}\t{1}\t{2}".format(term, 0.0, search_doc))
 
 
 

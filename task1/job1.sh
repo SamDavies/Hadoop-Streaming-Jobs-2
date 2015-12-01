@@ -6,7 +6,7 @@ hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.
  -D num.key.fields.for.partition=1 \
  -D mapreduce.partition.keypartitioner.options=\"-k1,1\" \
  -D mapreduce.partition.keycomparator.options=\"-k1,2\" \
- -input /data/assignments/ex2/task1/small/ \
+ -input /data/assignments/ex2/task1/large/ \
  -output /user/\$USER/data/Assignment2/task1/output/job1 \
  -mapper mapper1.py \
  -reducer reducer1.py \

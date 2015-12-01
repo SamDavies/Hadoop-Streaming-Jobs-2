@@ -8,8 +8,7 @@ scp -rp $DIR/task$TASK/input s1220039@student.ssh.inf.ed.ac.uk:/afs/inf.ed.ac.uk
 
 # remove the existing output directory
 ssh -t -t s1220039@student.ssh.inf.ed.ac.uk << EOL
-    rm -r /afs/inf.ed.ac.uk/user/s12/s1220039/Documents/EXC/Assignment2/task$TASK/output/job1
-    rm -r /afs/inf.ed.ac.uk/user/s12/s1220039/Documents/EXC/Assignment2/task$TASK/output/job2
+    rm -r /afs/inf.ed.ac.uk/user/s12/s1220039/Documents/EXC/Assignment2/task$TASK/output/
     exit
 EOL
 
@@ -28,7 +27,7 @@ echo "COPY RESULTS COMMAND"
 echo "---------------------"
 #echo "hdfs dfs -rm -r /user/\$USER/\${USER}_task_${TASK}.out;"
 #echo "hdfs dfs -cp /user/\$USER/data/output /user/\$USER/\${USER}_task_${TASK}.out;"
-echo "hdfs dfs -copyToLocal /user/\$USER/data/output/job2 /afs/inf.ed.ac.uk/user/s12/s1220039/Documents/EXC/Assignment2/task$TASK/"
+echo "hdfs dfs -copyToLocal /user/\$USER/data/Assignment2/task$TASK/output /afs/inf.ed.ac.uk/user/s12/s1220039/Documents/EXC/Assignment2/task$TASK/"
 echo ""
 
 echo "LOCAL COPY RESULTS COMMAND"
