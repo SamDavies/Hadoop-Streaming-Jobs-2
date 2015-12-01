@@ -1,0 +1,12 @@
+cat	input1.txt	1
+dog	input1.txt	1
+cat	input1.txt	1
+fox	input1.txt	1
+cat	input2.txt	1
+bear	input2.txt	1
+cat	input2.txt	1
+cat	input2.txt	1
+fox	input2.txt	1
+fox	input3.txt	1
+wolf	input3.txt	1
+dog	input3.txt	1

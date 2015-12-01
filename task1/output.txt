@@ -1,0 +1,5 @@
+bear:1:{(input2.txt,1)}
+cat:2:{(input1.txt,2),(input2.txt,3)}
+dog:2:{(input1.txt,1),(input3.txt,1)}
+fox:3:{(input1.txt,1),(input2.txt,1),(input3.txt,1)}
+wolf:1:{(input3.txt,1)}
