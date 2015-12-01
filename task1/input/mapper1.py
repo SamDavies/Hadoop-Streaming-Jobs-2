@@ -10,4 +10,4 @@ for line in sys.stdin:
     words = line.split()
 
     for word in words:
-        print("{0}\t{1}\t{2}".format(word, file_name, 1))
+        print("{0}\t{1}\t{2}".format(word.replace(":", ""), file_name, 1))
