@@ -23,6 +23,11 @@ echo "-----------"
 . task$TASK/job2.sh
 echo ""
 
+echo "JOB COMMAND 3"
+echo "-----------"
+. task$TASK/job3.sh
+echo ""
+
 echo "COPY RESULTS COMMAND"
 echo "---------------------"
 #echo "hdfs dfs -rm -r /user/\$USER/\${USER}_task_${TASK}.out;"
