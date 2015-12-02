@@ -19,7 +19,7 @@ for line in sys.stdin:
         if current_count > max_count:
             max_word = prev_word
             max_count = current_count
-            current_count = 0
+        current_count = 0
 
     prev_word = word
     current_count += 1
