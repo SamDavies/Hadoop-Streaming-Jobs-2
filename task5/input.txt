@@ -1,0 +1,4 @@
+missions.msfc.nasa.gov - - [01/Aug/1995:13:24:29 -0400] "GET /shuttle/missions/missions.html HTTP/1.0" 404 8677
+missions.msfc.nasa.gov - - [02/Aug/1996:14:25:23 -0400] "GET /shuttle/missions/missions.html HTTP/1.0" 404 8677
+tom.msfc.nasa.gov - - [01/Aug/1995:13:24:29 -0400] "GET /shuttle/missions/tom.html HTTP/1.0" 404 8677
+sam.msfc.nasa.gov - - [01/Aug/1995:13:24:29 -0400] "GET /shuttle/missions/sam.html HTTP/1.0" 200 8677
