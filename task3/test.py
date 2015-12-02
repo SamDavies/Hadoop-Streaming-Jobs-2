@@ -3,15 +3,15 @@ import subprocess
 import unittest
 
 
-class Task2Test(unittest.TestCase):
+class Task3Test(unittest.TestCase):
     def test_both(self):
         # given
-        bash_command = 'cat task2/input.txt | ' \
-                       './task2/input/mapper1.py | sort -nk1,1 | ./task2/input/reducer1.py'
+        bash_command = 'cat task3/input.txt | ' \
+                       './task3/input/mapper1.py | sort -k1,1 | ./task3/input/reducer1.py'
         output = subprocess.check_output(bash_command, shell=True)
 
         # when
-        expected = subprocess.check_output('cat task2/output.txt', shell=True)
+        expected = subprocess.check_output('cat task3/output.txt', shell=True)
 
         # then
         self.assertEqual(expected, output)

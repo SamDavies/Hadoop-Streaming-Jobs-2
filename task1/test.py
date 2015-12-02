@@ -3,7 +3,7 @@ import subprocess
 import unittest
 
 
-class Task9Test(unittest.TestCase):
+class Task1Test(unittest.TestCase):
     def test_both(self):
         # given
         bash_command1 = 'cat task1/input1.txt | ' \
