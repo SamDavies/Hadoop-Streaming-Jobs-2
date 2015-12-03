@@ -45,10 +45,3 @@ if prev_user == user_id:
         max_post_list = current_post_list
 
 print("{0}\t{1}\t{2}".format(max_post_count, max_user, max_post_list))
-
-
-
-
-
-
-

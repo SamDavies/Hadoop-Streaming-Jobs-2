@@ -9,7 +9,7 @@ for line in sys.stdin:
     count, user_id, posts = line.split("\t", 3)
 
     if num < 1:
-        print(line)
+        print("{0}\t->\t{1}".format(user_id, posts))
         num += 1
 
 

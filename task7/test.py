@@ -8,8 +8,7 @@ class Task7Test(unittest.TestCase):
         # given
         bash_command = 'cat task7/input.txt | ' \
                        './task7/input/mapper1.py | sort -nrk1,1 | ./task7/input/reducer1.py | ' \
-                       'cat | sort -nrk1,1 | ./task7/input/reducer2.py | ' \
-                       'cat | sort -nrk1,1 | ./task7/input/reducer3.py'
+                       'cat | sort -nrk1,1 | ./task7/input/reducer2.py'
         output = subprocess.check_output(bash_command, shell=True)
 
         # when
