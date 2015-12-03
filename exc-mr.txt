@@ -76,6 +76,9 @@ for line in sys.stdin:
     line = line.strip()
     word, word_counts, doc_count = line.split(":", 2)
     print("{0}:{1}:{2}".format(word, doc_count, word_counts))
+
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D stream.num.map.output.key.fields=2  -D num.key.fields.for.partition=1  -D mapreduce.partition.keypartitioner.options="-k1,1"  -D mapreduce.partition.keycomparator.options="-k1,2"  -input /data/assignments/ex2/task1/large/  -output /user/$USER/data/Assignment2/task1/output/job1  -mapper mapper1.py  -reducer reducer1.py  -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner  -file Documents/EXC/Assignment2/task1/input/mapper1.py  -file Documents/EXC/Assignment2/task1/input/reducer1.py  -jobconf mapred.job.name="Sam's inverted index part 1" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapreduce.job.reduces=1  -input /user/$USER/data/Assignment2/task1/output/job1  -output /user/$USER/data/Assignment2/task1/output/job2  -mapper cat  -reducer reducer2.py  -file Documents/EXC/Assignment2/task1/input/reducer2.py  -jobconf mapred.job.name="Sam's inverted index part 2" ;
 Task 1 code end
 
 Task 1 results begin
@@ -173,6 +176,8 @@ for line in sys.stdin:
 
 if prev_word == word:
     print("{0}, {1} = {2}".format(word, doc, score))
+
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D stream.num.map.output.key.fields=2  -D num.key.fields.for.partition=1  -D mapreduce.partition.keypartitioner.options="-n1,1"  -D mapreduce.partition.keycomparator.options="-n1,2"  -D mapreduce.job.reduces=2  -input /user/$USER/data/Assignment2/task1/output/job2  -output /user/$USER/data/Assignment2/task2/output/  -mapper mapper1.py  -reducer reducer1.py  -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner  -file Documents/EXC/Assignment2/task2/terms.txt  -file Documents/EXC/Assignment2/task2/input/mapper1.py  -file Documents/EXC/Assignment2/task2/input/reducer1.py  -jobconf mapred.job.name="Sam's tf-idf" ;
 Task 2 code end
 
 Task 2 results begin
@@ -265,6 +270,9 @@ for line in sys.stdin:
     if num < 1:
         print("{0}\t{1}".format(word, count))
         num += 1
+
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -input /data/assignments/ex2/task2/logsLarge.txt  -output /user/$USER/data/Assignment2/task3/output/job1/  -mapper mapper1.py  -reducer reducer1.py  -file Documents/EXC/Assignment2/task3/input/mapper1.py  -file Documents/EXC/Assignment2/task3/input/reducer1.py  -jobconf mapred.job.name="Sam's most requested url part 1" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -D mapreduce.job.reduces=1  -input /user/$USER/data/Assignment2/task3/output/job1/  -output /user/$USER/data/Assignment2/task3/output/job2/  -mapper mapper2.py  -reducer reducer2.py  -file Documents/EXC/Assignment2/task3/input/mapper2.py  -file Documents/EXC/Assignment2/task3/input/reducer2.py  -jobconf mapred.job.name="Sam's most requested url part 2" ;
 Task 3.1 code end
 
 Task 3.1 results begin
@@ -341,6 +349,10 @@ for line in sys.stdin:
     if num < 10:
         print("{0}\t{1}".format(word, count))
         num += 1
+
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -input /data/assignments/ex2/task2/logsLarge.txt  -output /user/$USER/data/Assignment2/task4/output/job1/  -mapper mapper1.py  -reducer reducer1.py  -file Documents/EXC/Assignment2/task4/input/mapper1.py  -file Documents/EXC/Assignment2/task4/input/reducer1.py  -jobconf mapred.job.name="Sam's top 10 404s part 1" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -input /user/$USER/data/Assignment2/task4/output/job1/  -output /user/$USER/data/Assignment2/task4/output/job2/  -mapper mapper2.py  -reducer reducer2.py  -file Documents/EXC/Assignment2/task4/input/mapper2.py  -file Documents/EXC/Assignment2/task4/input/reducer2.py  -jobconf mapred.job.name="Sam's top 10 404s part 2" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -D mapreduce.job.reduces=1  -input /user/$USER/data/Assignment2/task4/output/job2/  -output /user/$USER/data/Assignment2/task4/output/job3/  -mapper mapper2.py  -reducer reducer2.py  -file Documents/EXC/Assignment2/task4/input/mapper2.py  -file Documents/EXC/Assignment2/task4/input/reducer2.py  -jobconf mapred.job.name="Sam's top 10 404s part 3" ;
 Task 3.2 code end
 
 Task 3.2 results begin
@@ -427,6 +439,8 @@ for line in sys.stdin:
     request_count += 1
 
 print_host_time_diff(host, request_count, timestamp_raw, first_timestamp)
+
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D stream.num.map.output.key.fields=2  -D num.key.fields.for.partition=1  -D mapreduce.partition.keypartitioner.options="-k1,1"  -D mapreduce.partition.keycomparator.options="-k1,2"  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -input /data/assignments/ex2/task2/logsLarge.txt  -output /user/$USER/data/Assignment2/task5/output/  -mapper mapper1.py  -reducer reducer1.py  -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner  -file Documents/EXC/Assignment2/task5/input/mapper1.py  -file Documents/EXC/Assignment2/task5/input/reducer1.py  -jobconf mapred.job.name="Sam's time diff" ;
 Task 3.3 code end
 
 Task 3.3 results begin
@@ -502,6 +516,9 @@ for line in sys.stdin:
     if num < 10:
         print("{0},\t{1}".format(post_id, count))
         num += 1
+
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -input /data/assignments/ex2/task3/stackLarge.txt  -output /user/$USER/data/Assignment2/task6/output/job1/  -mapper mapper1.py  -reducer reducer1.py  -file Documents/EXC/Assignment2/task6/input/mapper1.py  -file Documents/EXC/Assignment2/task6/input/reducer1.py  -jobconf mapred.job.name="Sam's stack overflow most viewed part 1" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -D mapreduce.job.reduces=1  -input /user/$USER/data/Assignment2/task6/output/job1/  -output /user/$USER/data/Assignment2/task6/output/job2/  -mapper cat  -reducer reducer2.py  -file Documents/EXC/Assignment2/task6/input/reducer2.py  -jobconf mapred.job.name="Sam's stack overflow most viewed part 2" ;
 Task 4.1 code end
 
 Task 4.1 results begin
@@ -613,6 +630,10 @@ for line in sys.stdin:
     if num < 1:
         print("{0}\t->\t{1}".format(user_id, posts))
         num += 1
+
+hdfs dfs -rm -r /user/$USER/data/Assignment2/task7/output/job1/ ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D stream.num.map.output.key.fields=2  -D num.key.fields.for.partition=1  -D mapreduce.partition.keypartitioner.options="-k1,1"  -D mapreduce.partition.keycomparator.options="-k1,2"  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -input /data/assignments/ex2/task3/stackLarge.txt  -output /user/$USER/data/Assignment2/task7/output/job1/  -mapper mapper1.py  -reducer reducer1.py  -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner  -file Documents/EXC/Assignment2/task7/input/mapper1.py  -file Documents/EXC/Assignment2/task7/input/reducer1.py  -jobconf mapred.job.name="Sam's stack overflow most answered part 1" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -D mapreduce.job.reduces=1  -input /user/$USER/data/Assignment2/task7/output/job1/  -output /user/$USER/data/Assignment2/task7/output/job2/  -mapper cat  -reducer reducer2.py  -file Documents/EXC/Assignment2/task7/input/reducer2.py  -jobconf mapred.job.name="Sam's stack overflow most answered part 3" ;
 Task 4.2 code end
 
 Task 4.2 results begin
@@ -741,6 +762,10 @@ for line in sys.stdin:
     if num < 1:
         print("{0}\t->\t{1}\t{2}".format(user_id, count, posts))
         num += 1
+
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D stream.num.map.output.key.fields=2  -D num.key.fields.for.partition=1  -D mapreduce.partition.keypartitioner.options="-k1,1"  -D mapreduce.partition.keycomparator.options="-k1,2"  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-n  -input /data/assignments/ex2/task3/stackLarge.txt  -output /user/$USER/data/Assignment2/task8/output/job1/  -mapper mapper1.py  -reducer reducer1.py  -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner  -file Documents/EXC/Assignment2/task8/input/mapper1.py  -file Documents/EXC/Assignment2/task8/input/reducer1.py  -jobconf mapred.job.name="Sam's stack overflow most accepted part 1" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D stream.num.map.output.key.fields=2  -D num.key.fields.for.partition=1  -D mapreduce.partition.keypartitioner.options="-k1,1"  -D mapreduce.partition.keycomparator.options="-k1,2"  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -input /user/$USER/data/Assignment2/task8/output/job1/  -output /user/$USER/data/Assignment2/task8/output/job2/  -mapper cat  -reducer reducer2.py  -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner  -file Documents/EXC/Assignment2/task8/input/reducer2.py  -jobconf mapred.job.name="Sam's stack overflow most accepted part 2" ;
+hadoop jar /opt/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar  -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator  -D mapred.text.key.comparator.options=-nr  -D mapreduce.job.reduces=1  -input /user/$USER/data/Assignment2/task8/output/job2/  -output /user/$USER/data/Assignment2/task8/output/job3/  -mapper cat  -reducer reducer3.py  -file Documents/EXC/Assignment2/task8/input/reducer3.py  -jobconf mapred.job.name="Sam's stack overflow most accepted part 3" ;
 Task 4.3 code end
 
 Task 4.3 results begin
